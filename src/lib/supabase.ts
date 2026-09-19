@@ -1,7 +1,6 @@
 // lib/supabase.ts — Supabase client singletons
 import { createBrowserClient } from '@supabase/ssr';
 import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -12,7 +11,9 @@ export function createClient() {
 }
 
 // ─── Server client (untuk Server Components / Route Handlers) ──
-export function createServerSupabase() {
+export async function createServerSupabase() {
+  // Dynamic import to avoid module-level evaluation of next/headers
+  const { cookies } = await import('next/headers');
   const cookieStore = cookies();
   return createServerClient(url, anon, {
     cookies: {
