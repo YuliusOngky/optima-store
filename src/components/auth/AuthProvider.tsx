@@ -25,14 +25,19 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+const AUTH_TIMEOUT_MS = 2500;
+
 export default function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
 
   const loadUser = useCallback(async (sess: Session | null) => {
-    if (!sess?.user) { setUser(null); setSession(null); return; }
+    if (!sess?.user) {
+      setUser(null);
+      setSession(null);
+      return;
+    }
     const u = sess.user;
     setSession(sess);
     setUser({
@@ -45,29 +50,71 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }, []);
 
   useEffect(() => {
-    // Initial session
-    supabase.auth.getSession().then(({ data }) => {
-      loadUser(data.session).finally(() => setLoading(false));
-    });
+    let cancelled = false;
+    const failSafe = window.setTimeout(() => {
+      if (!cancelled) setLoading(false);
+    }, AUTH_TIMEOUT_MS);
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, sess) => {
-      loadUser(sess).finally(() => setLoading(false));
-    });
+    let subscription: { unsubscribe: () => void } | undefined;
 
-    return () => subscription.unsubscribe();
-  }, [loadUser, supabase.auth]);
+    try {
+      const supabase = createClient();
+
+      supabase.auth
+        .getSession()
+        .then(({ data }) => {
+          if (cancelled) return;
+          return loadUser(data.session);
+        })
+        .catch((err) => {
+          console.warn('auth getSession failed', err);
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false);
+        });
+
+      const { data } = supabase.auth.onAuthStateChange((_event, sess) => {
+        loadUser(sess)
+          .catch(() => undefined)
+          .finally(() => {
+            if (!cancelled) setLoading(false);
+          });
+      });
+      subscription = data.subscription;
+    } catch (err) {
+      console.warn('auth client init failed', err);
+      setLoading(false);
+    }
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(failSafe);
+      subscription?.unsubscribe();
+    };
+  }, [loadUser]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.warn('signOut failed', err);
+    }
     setUser(null);
     setSession(null);
     window.location.href = '/';
   };
 
   const refresh = async () => {
-    const { data } = await supabase.auth.getSession();
-    await loadUser(data.session);
+    try {
+      const supabase = createClient();
+      const { data } = await supabase.auth.getSession();
+      await loadUser(data.session);
+    } catch (err) {
+      console.warn('auth refresh failed', err);
+      setUser(null);
+      setSession(null);
+    }
   };
 
   return (

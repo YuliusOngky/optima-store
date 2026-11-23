@@ -6,14 +6,14 @@ import { useCartStore } from '@/store/cart';
 import { useAuth } from '@/components/auth/AuthProvider';
 
 const CATEGORIES = [
-  { label: '📱 Elektronik', slug: 'elektronik' },
-  { label: '👕 Fashion', slug: 'fashion' },
-  { label: '🏠 Rumah Tangga', slug: 'rumah-tangga' },
-  { label: '⚽ Olahraga', slug: 'olahraga' },
-  { label: '💄 Kecantikan', slug: 'kecantikan' },
-  { label: '🚗 Otomotif', slug: 'otomotif' },
-  { label: '🍜 Makanan', slug: 'makanan' },
-  { label: '📚 Buku', slug: 'buku' },
+  { label: 'Elektronik', slug: 'elektronik' },
+  { label: 'Fashion', slug: 'fashion' },
+  { label: 'Rumah Tangga', slug: 'rumah-tangga' },
+  { label: 'Olahraga', slug: 'olahraga' },
+  { label: 'Kecantikan', slug: 'kecantikan' },
+  { label: 'Otomotif', slug: 'otomotif' },
+  { label: 'Makanan', slug: 'makanan' },
+  { label: 'Buku', slug: 'buku' },
 ];
 
 export default function Header() {
@@ -24,7 +24,6 @@ export default function Header() {
   const { user, loading, signOut } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -45,134 +44,123 @@ export default function Header() {
     : '';
 
   return (
-    <header className="sticky top-0 z-50 bg-blue-700 shadow-md">
-      {/* Main bar */}
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <span className="text-2xl">🛍️</span>
-          <div className="text-white leading-none">
-            <div className="font-black text-lg leading-none">Optima</div>
-            <div className="text-blue-200 text-xs">Store</div>
+    <header className="sticky top-0 z-50 bg-[#0b4f9c] shadow-md">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3">
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0 min-w-0">
+          <span className="w-9 h-9 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white font-black text-sm tracking-tight">
+            OS
+          </span>
+          <div className="text-white leading-none hidden xs:block sm:block">
+            <div className="font-black text-[15px] sm:text-lg leading-none tracking-tight">Optima</div>
+            <div className="text-blue-100/80 text-[10px] sm:text-xs font-medium">Store</div>
           </div>
         </Link>
 
-        {/* Search */}
-        <form onSubmit={handleSearch} className="flex-1 flex gap-2 max-w-xl mx-auto">
-          <div className="flex-1 flex rounded-xl overflow-hidden bg-white shadow-inner">
+        <form onSubmit={handleSearch} className="flex-1 min-w-0 max-w-2xl">
+          <div className="flex rounded-xl overflow-hidden bg-white shadow-sm ring-1 ring-black/5">
             <input
-              type="text"
+              type="search"
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Cari produk, toko, kategori..."
-              className="flex-1 px-4 py-2 text-sm text-gray-700 outline-none bg-transparent"
+              className="flex-1 min-w-0 px-3 sm:px-4 py-2.5 text-sm text-gray-800 outline-none bg-transparent placeholder:text-gray-400"
+              aria-label="Cari produk"
             />
             <button
               type="submit"
-              className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 text-blue-900 font-bold text-sm transition"
+              className="bg-amber-400 hover:bg-amber-300 px-3.5 sm:px-4 py-2.5 text-[#0b4f9c] font-bold text-sm transition shrink-0"
+              aria-label="Cari"
             >
-              🔍
+              Cari
             </button>
           </div>
         </form>
 
-        {/* Right icons */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
           {user?.role === 'SELLER' ? (
             <Link
               href="/dashboard/seller"
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
+              className="hidden md:inline-flex bg-amber-400 hover:bg-amber-300 text-[#0b4f9c] font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
             >
               Toko Saya
             </Link>
           ) : (
             <Link
               href="/seller-onboarding"
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
+              className="hidden md:inline-flex bg-amber-400 hover:bg-amber-300 text-[#0b4f9c] font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
             >
               Jadi Seller
             </Link>
           )}
 
-          {/* Cart */}
-          <Link href="/cart" className="relative flex flex-col items-center text-white hover:text-yellow-300 transition">
-            <span className="text-xl">🛒</span>
+          <Link
+            href="/cart"
+            className="relative flex flex-col items-center justify-center text-white hover:text-amber-200 transition w-11 h-11 rounded-xl hover:bg-white/10"
+            aria-label={`Keranjang${itemCount ? `, ${itemCount} item` : ''}`}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6h15l-1.5 9h-12L6 6Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              <path d="M6 6 5 3H2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <circle cx="9" cy="20" r="1.2" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.2" fill="currentColor" />
+            </svg>
             {itemCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-black rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="absolute top-1 right-1 bg-red-500 text-white text-[10px] font-black rounded-full min-w-4 h-4 px-1 flex items-center justify-center">
                 {itemCount > 99 ? '99+' : itemCount}
               </span>
             )}
-            <span className="text-[10px] hidden sm:block">Keranjang</span>
           </Link>
 
-          {/* Auth */}
-          {loading ? (
-            <div className="w-8 h-8 rounded-full bg-blue-500 animate-pulse" />
-          ) : user ? (
+          {user ? (
             <div className="relative" ref={dropdownRef}>
               <button
+                type="button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 text-white hover:text-yellow-300 transition"
+                className="flex items-center gap-2 text-white hover:bg-white/10 rounded-xl px-1.5 py-1 transition"
+                aria-expanded={dropdownOpen}
+                aria-haspopup="menu"
               >
                 {user.avatar ? (
-                  <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full object-cover border-2 border-white" />
+                  <img src={user.avatar} alt="" className="w-8 h-8 rounded-full object-cover border-2 border-white/80" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-yellow-400 text-blue-900 font-black text-sm flex items-center justify-center border-2 border-white">
+                  <div className="w-8 h-8 rounded-full bg-amber-400 text-[#0b4f9c] font-black text-sm flex items-center justify-center border-2 border-white/80">
                     {initials}
                   </div>
                 )}
-                <div className="hidden sm:block text-left">
-                  <div className="text-xs font-bold leading-none truncate max-w-[80px]">{user.name.split(' ')[0]}</div>
-                  <div className="text-[10px] text-blue-200 leading-none capitalize">{user.role.toLowerCase()}</div>
+                <div className="hidden sm:block text-left pr-1">
+                  <div className="text-xs font-bold leading-none truncate max-w-[88px]">{user.name.split(' ')[0]}</div>
+                  <div className="text-[10px] text-blue-100/80 leading-none capitalize mt-0.5">{user.role.toLowerCase()}</div>
                 </div>
-                <span className="text-blue-200 text-xs">▾</span>
               </button>
 
-              {/* Dropdown */}
               {dropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-xl border overflow-hidden z-50">
+                <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50" role="menu">
                   <div className="px-4 py-3 border-b bg-gray-50">
                     <p className="font-bold text-sm text-gray-900 truncate">{user.name}</p>
                     <p className="text-xs text-gray-400 truncate">{user.email}</p>
                   </div>
                   <div className="py-1">
-                    <Link href="/dashboard" onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
-                      <span>🏠</span> Dashboard
-                    </Link>
-                    <Link href="/orders" onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
-                      <span>📦</span> Pesanan Saya
-                    </Link>
-                    <Link href="/profile" onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
-                      <span>👤</span> Profil
-                    </Link>
+                    <Link href="/dashboard" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Dashboard</Link>
+                    <Link href="/orders" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Pesanan Saya</Link>
+                    <Link href="/profile" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50" role="menuitem">Profil</Link>
                     {user.role === 'BUYER' && (
-                      <Link href="/seller-onboarding" onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-blue-700 hover:bg-blue-50 transition">
-                        <span>🏪</span> Jadi Seller
-                      </Link>
+                      <Link href="/seller-onboarding" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-blue-700 hover:bg-blue-50" role="menuitem">Jadi Seller</Link>
                     )}
                     {user.role === 'SELLER' && (
-                      <Link href="/dashboard/seller" onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-green-700 hover:bg-green-50 transition">
-                        <span>🏪</span> Dashboard Toko
-                      </Link>
+                      <Link href="/dashboard/seller" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-green-700 hover:bg-green-50" role="menuitem">Dashboard Toko</Link>
                     )}
                     {user.role === 'ADMIN' && (
-                      <Link href="/dashboard/admin" onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-purple-700 hover:bg-purple-50 transition">
-                        <span>⚙️</span> Admin Panel
-                      </Link>
+                      <Link href="/dashboard/admin" onClick={() => setDropdownOpen(false)} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50" role="menuitem">Admin Panel</Link>
                     )}
                   </div>
                   <div className="border-t py-1">
                     <button
+                      type="button"
                       onClick={() => { setDropdownOpen(false); signOut(); }}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition w-full text-left"
+                      className="block px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                      role="menuitem"
                     >
-                      <span>🚪</span> Keluar
+                      Keluar
                     </button>
                   </div>
                 </div>
@@ -181,35 +169,34 @@ export default function Header() {
           ) : (
             <Link
               href="/auth/login"
-              className="flex flex-col items-center text-white hover:text-yellow-300 transition"
+              className="inline-flex items-center justify-center h-9 px-3 sm:px-3.5 rounded-xl border border-white/35 text-white text-xs sm:text-sm font-semibold hover:bg-white hover:text-[#0b4f9c] transition whitespace-nowrap"
+              aria-busy={loading}
             >
-              <span className="text-xl">👤</span>
-              <span className="text-[10px] hidden sm:block">Masuk</span>
+              Masuk
             </Link>
           )}
         </div>
       </div>
 
-      {/* Category bar */}
-      <div className="bg-blue-800 border-t border-blue-600">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-1.5">
+      <div className="bg-[#083d7a] border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4">
+          <nav className="flex items-center gap-0.5 overflow-x-auto no-scrollbar py-1.5" aria-label="Kategori">
             {CATEGORIES.map(cat => (
               <Link
                 key={cat.slug}
                 href={`/?cat=${cat.slug}`}
-                className="flex-shrink-0 px-3 py-1 text-xs text-blue-100 hover:text-white hover:bg-blue-700 rounded-full transition font-medium whitespace-nowrap"
+                className="flex-shrink-0 px-3 py-1.5 text-xs text-blue-100/90 hover:text-white hover:bg-white/10 rounded-lg transition font-medium whitespace-nowrap"
               >
                 {cat.label}
               </Link>
             ))}
             <Link
               href="/sellers"
-              className="flex-shrink-0 px-3 py-1 text-xs text-blue-100 hover:text-white hover:bg-blue-700 rounded-full transition font-medium whitespace-nowrap ml-2 border border-blue-500"
+              className="flex-shrink-0 px-3 py-1.5 text-xs text-amber-200 hover:text-white hover:bg-white/10 rounded-lg transition font-semibold whitespace-nowrap ml-1 border border-amber-300/30"
             >
-              🏪 Semua Toko
+              Semua Toko
             </Link>
-          </div>
+          </nav>
         </div>
       </div>
     </header>

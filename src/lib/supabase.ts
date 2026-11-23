@@ -2,16 +2,26 @@
 import { createBrowserClient } from '@supabase/ssr';
 import { createServerClient } from '@supabase/ssr';
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
+
+export function isSupabaseConfigured() {
+  return Boolean(url && anon && url.startsWith('http'));
+}
 
 // ─── Browser client (untuk Client Components) ─────────────
 export function createClient() {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase env missing (NEXT_PUBLIC_SUPABASE_URL / ANON_KEY)');
+  }
   return createBrowserClient(url, anon);
 }
 
 // ─── Server client (untuk Server Components / Route Handlers) ──
 export async function createServerSupabase() {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase env missing (NEXT_PUBLIC_SUPABASE_URL / ANON_KEY)');
+  }
   // Dynamic import to avoid module-level evaluation of next/headers
   const { cookies } = await import('next/headers');
   const cookieStore = cookies();
