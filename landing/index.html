@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.ceTitle">Community eCommerce — Optima Digital Selaras</title>
+  <meta name="description" content="Solusi e-commerce berbasis komunitas untuk membantu UMKM, toko lokal, dan bisnis tumbuh bersama dalam satu ekosistem digital yang terintegrasi." />
+  <link rel="canonical" href="https://www.optimadigitalselaras.com/products/community-ecommerce/" />
+  <meta property="og:title" content="Community eCommerce — Bersama, Lebih Banyak Pelanggan" />
+  <meta property="og:description" content="E-commerce berbasis komunitas untuk UMKM dan toko lokal." />
+  <meta property="og:url" content="https://www.optimadigitalselaras.com/products/community-ecommerce/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.optimadigitalselaras.com/assets/optima/community-ecommerce-banner.jpg" />
+  <link rel="icon" type="image/png" href="/assets/optima/logo.png?v=2" />
+  <link rel="stylesheet" href="/assets/optima/cursor.css?v=3" />
+  <link rel="stylesheet" href="/assets/optima/i18n/i18n.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-950: #020b1d;
+      --navy-900: #071633;
+      --navy-800: #0d2347;
+      --navy-700: #15315f;
+      --teal: #8bc53f;
+      --teal-dark: #6ea82f;
+      --cyan-label: #a8d65e;
+      --ink: #0b1220;
+      --muted: #5b6472;
+      --line: rgba(11,18,32,.09);
+      --line-dark: rgba(255,255,255,.14);
+      --off: #f5f7fa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, sans-serif; color: var(--ink); background: #fff; line-height: 1.5; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: Manrope, sans-serif; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--cyan-label); }
+    section { padding: 100px 0; }
+
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,12,28,.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.07); }
+    #nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark { width: 40px; height: 40px; object-fit: contain; }
+    .brand-text b { display: block; color: #fff; font-family: Manrope, sans-serif; font-weight: 800; font-size: 15px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,.8); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; }
+    .nav-links a[aria-current="page"] { position: relative; }
+    .nav-links a[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -28px; height: 2px; background: var(--teal); }
+    .nav-toggle { display: none; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; background: transparent; color: #fff; align-items: center; justify-content: center; cursor: pointer; }
+    .nav-toggle svg { width: 18px; height: 18px; }
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: block; position: fixed; top: 78px; left: 0; right: 0; bottom: 0; background: var(--navy-950); z-index: 99; padding: 28px 22px; overflow-y: auto; }
+    .mobile-menu.open ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu.open a { display: block; padding: 16px 6px; color: #fff; font-size: 17px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .mobile-menu.open .mm-cta { margin-top: 20px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 24px; border-radius: 8px; font-size: 14.5px; font-weight: 600; transition: all .2s ease; white-space: nowrap; }
+    .btn-solid { background: var(--teal); color: var(--navy-950); }
+    .btn-solid:hover { background: #a8d65e; transform: translateY(-1px); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,.35); color: #fff; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+    .btn-ghost { border: 1.5px solid var(--line); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--navy-800); }
+    .btn-arrow { font-size: 16px; transition: transform .2s; }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+
+    .hero { padding: 140px 0 72px; background: var(--navy-950); color: #fff; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: clamp(34px, 4.2vw, 56px); color: #fff; line-height: 1.08; margin: 12px 0 10px; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero .lead { color: rgba(255,255,255,.74); font-size: 16.5px; line-height: 1.75; max-width: 540px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line-dark); color: rgba(255,255,255,.88); font-size: 12.5px; font-weight: 600; }
+    .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); display: block; }
+    .hero-visual { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-dark); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16/10; }
+
+    .features { background: #fff; }
+    .sec-head { margin-bottom: 40px; max-width: 640px; }
+    .sec-head h2 { font-size: clamp(24px, 2.6vw, 34px); margin: 8px 0 10px; }
+    .sec-head p { color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+    .light-eyebrow { color: var(--teal-dark); }
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feat { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+    .feat-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(139,197,63,.12); color: var(--teal-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .feat h3 { font-size: 17px; margin-bottom: 8px; }
+    .feat p { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+
+    .cats { background: var(--off); }
+    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .cat { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+    .cat-visual { height: 92px; display: flex; align-items: flex-end; padding: 16px; color: #fff; font-weight: 800; font-family: Manrope, sans-serif; }
+    .cat.c1 .cat-visual { background: linear-gradient(135deg, #c2410c, #f59e0b); }
+    .cat.c2 .cat-visual { background: linear-gradient(135deg, #1d4ed8, #38bdf8); }
+    .cat.c3 .cat-visual { background: linear-gradient(135deg, #047857, #84cc16); }
+    .cat.c4 .cat-visual { background: linear-gradient(135deg, #9d174d, #fb7185); }
+    .cat-body { padding: 16px 18px 18px; }
+    .cat-body h3 { font-size: 16px; margin-bottom: 6px; }
+    .cat-body p { color: var(--muted); font-size: 13.5px; }
+
+    .why { background: #fff; }
+    .why-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+    .checks { list-style: none; display: grid; gap: 12px; margin-top: 22px; }
+    .checks li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--ink); }
+    .checks svg { flex-shrink: 0; margin-top: 2px; color: var(--teal-dark); }
+    .why-card { background: var(--navy-950); color: #fff; border-radius: 20px; padding: 36px 32px; }
+    .why-card h3 { color: #fff; font-size: 24px; margin-bottom: 10px; }
+    .why-card p { color: rgba(255,255,255,.72); margin-bottom: 22px; }
+
+    .final-cta { background: #fff; padding: 40px 0 100px; }
+    .final-cta .wrap > div { background: var(--navy-950); border-radius: 20px; padding: 42px 40px; display: flex; justify-content: space-between; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .final-cta h3 { color: #fff; font-size: 28px; }
+    .final-cta p { color: rgba(255,255,255,.7); margin-top: 8px; max-width: 520px; }
+    .final-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    footer { background: var(--navy-950); color: rgba(255,255,255,.72); padding: 48px 0 28px; }
+    .foot-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+    .foot-col h6 { color: #fff; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 12px; }
+    .foot-col a, .foot-col p { display: block; font-size: 14px; margin: 8px 0; color: rgba(255,255,255,.68); }
+    .foot-col a:hover { color: #fff; }
+    .foot-bottom { border-top: 1px solid var(--line-dark); padding-top: 18px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    #fitur, #kategori, #komunitas, #footer { scroll-margin-top: 90px; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero-grid, .why-grid, .feat-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .wrap { padding: 0 40px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 22px; }
+      .hero { padding-top: 118px; }
+      .cat-grid { grid-template-columns: 1fr; }
+      section { padding: 72px 0; }
+      .final-cta .wrap > div { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="wrap">
+      <a href="/" class="brand">
+        <img class="brand-mark" src="/assets/optima/logo.png?v=2" width="40" height="40" alt="Optima Digital Selaras">
+        <span class="brand-text"><b>PT Optima Digital Selaras</b></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/products/" aria-current="page" data-i18n="nav.products">Produk</a></li>
+        <li><a href="#fitur" data-i18n="ce.nav.features">Fitur</a></li>
+        <li><a href="#kategori" data-i18n="ce.nav.categories">Kategori</a></li>
+        <li><a href="#komunitas" data-i18n="ce.nav.community">Komunitas</a></li>
+        <li><a href="https://wa.me/6285770566781?text=Halo%20Optima%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20Community%20eCommerce." target="_blank" rel="noopener noreferrer" data-i18n="nav.contact">Kontak</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="lang-toggle" role="group" aria-label="Language" data-i18n-aria-label="lang.label">
+          <button type="button" data-lang-set="id" aria-pressed="true">ID</button>
+          <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Buka menu" data-i18n-aria-label="nav.openMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="/products/" data-i18n="nav.products">Produk</a></li>
+      <li><a href="#fitur" data-i18n="ce.nav.features">Fitur</a></li>
+      <li><a href="#kategori" data-i18n="ce.nav.categories">Kategori</a></li>
+      <li><a href="#komunitas" data-i18n="ce.nav.community">Komunitas</a></li>
+      <li><a href="https://wa.me/6285770566781?text=Halo%20Optima%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20Community%20eCommerce." target="_blank" rel="noopener noreferrer" data-i18n="nav.contact">Kontak</a></li>
+    </ul>
+    <a href="https://ecommerce.optimadigitalselaras.com/" class="btn btn-solid mm-cta"><span data-i18n="cta.lihatDemo">Lihat Demo</span> <span class="btn-arrow">→</span></a>
+  </div>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" data-i18n="ce.hero.eyebrow">Business Commerce</div>
+        <h1>Community <em>eCommerce</em></h1>
+        <p class="lead" data-i18n="ce.hero.lead">Bersama, lebih banyak pelanggan. Solusi e-commerce berbasis komunitas untuk membantu UMKM, toko lokal, dan bisnis tumbuh bersama dalam satu ekosistem digital yang terintegrasi, mudah digunakan, dan siap menjangkau lebih banyak pelanggan.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="https://ecommerce.optimadigitalselaras.com/"><span data-i18n="cta.lihatDemo">Lihat Demo</span> <span class="btn-arrow">→</span></a>
+          <a class="btn btn-outline" href="https://wa.me/6285770566781?text=Halo%20Optima%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20Community%20eCommerce." target="_blank" rel="noopener noreferrer" data-i18n="cta.konsultasi">Konsultasi Sekarang</a>
+        </div>
+        <div class="pills">
+          <span class="pill"><i></i> <span data-i18n="ce.pill.multi">Multi-Seller</span></span>
+          <span class="pill"><i></i> <span data-i18n="ce.pill.community">Berbasis Komunitas</span></span>
+          <span class="pill"><i></i> <span data-i18n="ce.pill.realtime">Laporan Real-time</span></span>
+          <span class="pill"><i></i> <span data-i18n="ce.pill.secure">Aman &amp; Terpercaya</span></span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="/assets/optima/community-ecommerce-banner.jpg?v=1" width="1376" height="768" alt="Community eCommerce — banner produk untuk komunitas UMKM Indonesia">
+      </div>
+    </div>
+  </section>
+
+  <section class="features reveal" id="fitur">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow light-eyebrow" data-i18n="ce.feat.eyebrow">Satu ekosistem</div>
+        <h2 data-i18n="ce.feat.title">Platform komunitas untuk banyak seller, dalam satu operasional.</h2>
+        <p data-i18n="ce.feat.desc">Dirancang agar toko lokal dan komunitas bisa berjualan bersama — tanpa membangun sistem terpisah untuk setiap pelaku usaha.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="2.4" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="9" r="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M4 18c.7-2.4 2.3-3.7 4-3.7M16 14.3c1.7 0 3.3 1.3 4 3.7M10.6 13c.4-.3.9-.5 1.4-.5s1 .2 1.4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="ce.f1.t">Satu platform untuk banyak seller</h3>
+          <p data-i18n="ce.f1.p">Komunitas, toko lokal, dan pelaku UMKM berjualan dalam satu ekosistem yang terintegrasi.</p>
+        </article>
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4zM8 7V5h8v2M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="ce.f2.t">Manajemen produk &amp; pesanan terpusat</h3>
+          <p data-i18n="ce.f2.p">Katalog, keranjang, checkout, dan pesanan dikelola dari satu alur operasional.</p>
+        </article>
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19h16M6 16l4-5 3 3 5-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 data-i18n="ce.f3.t">Laporan penjualan real-time</h3>
+          <p data-i18n="ce.f3.p">Pantau performa penjualan komunitas secara langsung untuk keputusan yang lebih cepat.</p>
+        </article>
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7V6a4 4 0 0 1 8 0v1" stroke="currentColor" stroke-width="1.7"/></svg></div>
+          <h3 data-i18n="ce.f4.t">Transaksi mudah dan aman</h3>
+          <p data-i18n="ce.f4.p">Alur belanja yang sederhana, dengan standar keamanan yang siap dipakai komunitas.</p>
+        </article>
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 4l2.1 4.3 4.7.7-3.4 3.3.8 4.7L12 15.8 7.8 17l.8-4.7L5.2 9l4.7-.7L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3 data-i18n="ce.f5.t">Dukungan promosi &amp; kampanye bersama</h3>
+          <p data-i18n="ce.f5.p">Komunitas bisa mendorong penjualan lewat promo dan kampanye yang dijalankan bersama.</p>
+        </article>
+        <article class="feat">
+          <div class="feat-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v6c0 5 3.2 8.4 7 9.5 3.8-1.1 7-4.5 7-9.5V6l-7-3Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3 data-i18n="ce.f6.t">Aman &amp; terpercaya</h3>
+          <p data-i18n="ce.f6.p">Dibangun dengan standar industri agar komunitas dan pembeli merasa nyaman bertransaksi.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cats reveal" id="kategori">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow light-eyebrow" data-i18n="ce.cat.eyebrow">Kategori komunitas</div>
+        <h2 data-i18n="ce.cat.title">Siap dipakai untuk produk lokal yang sudah akrab di komunitas Indonesia.</h2>
+        <p data-i18n="ce.cat.desc">Kuliner, fashion, kerajinan, dan perawatan — kategori yang sudah akrab di komunitas dan toko lokal.</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cat c1">
+          <div class="cat-visual">Kuliner</div>
+          <div class="cat-body">
+            <h3 data-i18n="ce.cat1.t">Kuliner &amp; Minuman</h3>
+            <p data-i18n="ce.cat1.p">Ragam rasa dari pelaku usaha lokal.</p>
+          </div>
+        </article>
+        <article class="cat c2">
+          <div class="cat-visual">Fashion</div>
+          <div class="cat-body">
+            <h3 data-i18n="ce.cat2.t">Fashion &amp; Aksesoris</h3>
+            <p data-i18n="ce.cat2.p">Tampil gaya dengan produk lokal berkualitas.</p>
+          </div>
+        </article>
+        <article class="cat c3">
+          <div class="cat-visual">Kerajinan</div>
+          <div class="cat-body">
+            <h3 data-i18n="ce.cat3.t">Kerajinan &amp; Souvenir</h3>
+            <p data-i18n="ce.cat3.p">Karya tangan untuk dunia yang lebih luas.</p>
+          </div>
+        </article>
+        <article class="cat c4">
+          <div class="cat-visual">Perawatan</div>
+          <div class="cat-body">
+            <h3 data-i18n="ce.cat4.t">Kecantikan &amp; Perawatan</h3>
+            <p data-i18n="ce.cat4.p">Produk terpercaya dari komunitas terdekat.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why reveal" id="komunitas">
+    <div class="wrap why-grid">
+      <div>
+        <div class="eyebrow light-eyebrow" data-i18n="ce.why.eyebrow">Untuk komunitas Indonesia</div>
+        <h2 data-i18n="ce.why.title">Dibuat agar mudah dipakai, lalu tumbuh bersama komunitasnya.</h2>
+        <ul class="checks">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="ce.why.c1">Mudah digunakan</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="ce.why.c2">Skalabel untuk pertumbuhan</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="ce.why.c3">Dukungan tim profesional</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="ce.why.c4">Siap terintegrasi dengan kebutuhan Anda</span>
+          </li>
+        </ul>
+      </div>
+      <aside class="why-card">
+        <h3 data-i18n="ce.why.card.t">Bangun ekosistem digital bersama Optima Digital Selaras.</h3>
+        <p data-i18n="ce.why.card.p">Wujudkan Community eCommerce yang lebih kuat dan berdampak untuk bisnis Anda.</p>
+        <a class="btn btn-solid" href="https://ecommerce.optimadigitalselaras.com/"><span data-i18n="cta.lihatDemo">Lihat Demo</span> <span class="btn-arrow">→</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <div>
+        <div>
+          <h3 data-i18n="ce.final.t">Siap melihat Community eCommerce beraksi?</h3>
+          <p data-i18n="ce.final.p">Konsultasikan kebutuhan komunitas dan toko lokal Anda ke tim Optima.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn btn-solid" href="https://ecommerce.optimadigitalselaras.com/"><span data-i18n="cta.lihatDemo">Lihat Demo</span> <span class="btn-arrow">→</span></a>
+          <a class="btn btn-outline" href="https://wa.me/6285770566781?text=Halo%20Optima%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20Community%20eCommerce." target="_blank" rel="noopener noreferrer" data-i18n="cta.konsultasi">Konsultasi Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-col">
+          <h6 data-i18n="ce.foot.products">Produk</h6>
+          <a href="/products/" data-i18n="ce.foot.all">Semua produk</a>
+          <a href="/products/#business-commerce">Business &amp; Commerce</a>
+          <a href="/products/community-ecommerce/">Community eCommerce</a>
+        </div>
+        <div class="foot-col">
+          <h6 data-i18n="ce.foot.demo">Demo</h6>
+          <a href="https://ecommerce.optimadigitalselaras.com/" data-i18n="ce.foot.live">Demo toko live</a>
+          <a href="/products/" data-i18n="ce.foot.catalog">Katalog produk</a>
+        </div>
+        <div class="foot-col">
+          <h6 data-i18n="ce.foot.company">Perusahaan</h6>
+          <a href="/#about" data-i18n="nav.about">Tentang Kami</a>
+          <a href="/#work" data-i18n="nav.clients">Klien Kami</a>
+        </div>
+        <div class="foot-col">
+          <h6 data-i18n="ce.foot.contact">Hubungi Kami</h6>
+          <a href="mailto:info@optimadigitalselaras.com">info@optimadigitalselaras.com</a>
+          <a href="https://wa.me/6285770566781" target="_blank" rel="noopener noreferrer">0857 7056 6781</a>
+          <p>Ruko Golden Madrid Blok D No. 26, BSD City, Tangerang Selatan</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 PT Optima Digital Selaras. All rights reserved.</span>
+        <span>www.optimadigitalselaras.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: .1 });
+      io.observe(el);
+    });
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileMenu');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/optima/i18n/translations.js?v=ce1"></script>
+  <script src="/assets/optima/i18n/i18n.js"></script>
+  <script src="/assets/optima/cursor.js?v=3" defer></script>
+</body>
+</html>

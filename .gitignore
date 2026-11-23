@@ -31,3 +31,15 @@ next-env.d.ts
 *.pem
 .idea
 .vscode
+*.bak*
+*.bak-*
+
+# netlify build artifacts (keep checked-in plugin toml if needed)
+.netlify/deploy/
+.netlify/static/
+.netlify/functions/
+.netlify/functions-internal/
+.netlify/edge-functions/
+.netlify/edge-functions-dist/
+.netlify/edge-functions-import-map.json
+deno.lock

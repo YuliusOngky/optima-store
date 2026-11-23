@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 // Rute yang butuh login
-const PROTECTED = ['/dashboard', '/checkout', '/orders', '/profile', '/seller-onboarding'];
+const PROTECTED = ['/dashboard', '/checkout', '/orders', '/profile'];
 // Rute khusus seller
 const SELLER_ONLY = ['/dashboard/seller'];
 // Rute khusus admin

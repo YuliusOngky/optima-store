@@ -21,6 +21,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
+      <head>
+        {/* Web Analytics Optima - site community (ditambahkan 4 Okt 2026) */}
+        <script defer src="https://optimadigitalselaras.com/webanalytic/script.js" data-site="community"></script>
+      </head>
       <body className={inter.className}>
         <Header />
         <main className="min-h-screen">{children}</main>

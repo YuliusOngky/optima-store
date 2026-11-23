@@ -1,0 +1,14 @@
+# CAP production compose for Community eCommerce (multi-vendor Optima Store).
+# Image: docker build -t optima-store:latest .
+# Env for NEXT_PUBLIC_* is baked at build time; runtime secrets stay on the host if needed.
+services:
+  web:
+    image: optima-store:latest
+    container_name: optima-store
+    ports:
+      - "3035:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    restart: unless-stopped

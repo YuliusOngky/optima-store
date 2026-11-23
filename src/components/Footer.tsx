@@ -16,16 +16,26 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold mb-3">Layanan</h4>
           <ul className="space-y-2 text-sm">
-            {['Jual di Optima', 'Optima Mall', 'Optima Bisnis', 'Optima Logistik'].map(l => (
-              <li key={l}><a href="#" className="hover:text-white transition">{l}</a></li>
+            {[
+              { label: 'Jual di Optima', href: '/seller-onboarding' },
+              { label: 'Optima Mall', href: '#' },
+              { label: 'Optima Bisnis', href: '#' },
+              { label: 'Optima Logistik', href: '#' },
+            ].map(l => (
+              <li key={l.label}><a href={l.href} className="hover:text-white transition">{l.label}</a></li>
             ))}
           </ul>
         </div>
         <div>
           <h4 className="text-white font-bold mb-3">Bantuan</h4>
           <ul className="space-y-2 text-sm">
-            {['Pusat Bantuan', 'Cara Berbelanja', 'Cara Berjualan', 'Kebijakan Privasi'].map(l => (
-              <li key={l}><a href="#" className="hover:text-white transition">{l}</a></li>
+            {[
+              { label: 'Pusat Bantuan', href: '#' },
+              { label: 'Cara Berbelanja', href: '#' },
+              { label: 'Cara Berjualan', href: '/seller-onboarding' },
+              { label: 'Kebijakan Privasi', href: '#' },
+            ].map(l => (
+              <li key={l.label}><a href={l.href} className="hover:text-white transition">{l.label}</a></li>
             ))}
           </ul>
         </div>

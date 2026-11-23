@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
-import { createClient } from '@/lib/supabase';
 import axios from 'axios';
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
@@ -19,6 +18,8 @@ export default function SellerOnboardingPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
 
+  const [ownerName, setOwnerName] = useState('');
+  const [email, setEmail] = useState('');
   const [storeName, setStoreName] = useState('');
   const [city, setCity] = useState('');
   const [description, setDescription] = useState('');
@@ -28,13 +29,15 @@ export default function SellerOnboardingPage() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.replace('/auth/login?next=/seller-onboarding');
-    }
     if (!loading && user && (user.role === 'SELLER' || user.role === 'ADMIN')) {
       router.replace('/dashboard');
     }
   }, [user, loading, router]);
+
+  useEffect(() => {
+    if (user?.email) setEmail(user.email);
+    if (user?.name) setOwnerName(user.name);
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,36 +46,22 @@ export default function SellerOnboardingPage() {
 
     setSubmitting(true);
     try {
-      const supabase = createClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      const token = session?.access_token;
-
-      await axios.post(`${API}/sellers/onboard`, {
+      await axios.post(`${API}/sellers/register`, {
+        ownerName,
+        email,
         storeName,
         city,
         description,
         phone,
-      }, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       setSuccess(true);
     } catch (err: any) {
-      // Graceful fallback — show success anyway (will be processed)
-      setSuccess(true);
+      const message = err?.response?.data?.message;
+      setError(Array.isArray(message) ? message.join(', ') : (message || 'Pendaftaran gagal. Coba lagi.'));
     } finally {
       setSubmitting(false);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  if (!user) return null;
 
   if (success) {
     return (
@@ -87,10 +76,10 @@ export default function SellerOnboardingPage() {
             Proses verifikasi 1-2 hari kerja. Kamu akan mendapat notifikasi via email.
           </p>
           <Link
-            href="/dashboard"
+            href="/"
             className="inline-block bg-blue-700 text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-800 transition"
           >
-            Kembali ke Dashboard &rarr;
+            Kembali ke Beranda &rarr;
           </Link>
         </div>
       </div>
@@ -126,6 +115,34 @@ export default function SellerOnboardingPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-semibold mb-1.5">
+                Nama Pemilik <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                value={ownerName}
+                onChange={e => setOwnerName(e.target.value)}
+                placeholder="Nama lengkap"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-1.5">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="nama@email.com"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-semibold mb-1.5">
                 Nama Toko <span className="text-red-500">*</span>
@@ -202,8 +219,8 @@ export default function SellerOnboardingPage() {
         </div>
 
         <div className="mt-6 text-center">
-          <Link href="/dashboard" className="text-sm text-gray-500 hover:text-gray-700">
-            Batalkan, kembali ke dashboard
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700">
+            Batalkan, kembali ke beranda
           </Link>
         </div>
       </div>

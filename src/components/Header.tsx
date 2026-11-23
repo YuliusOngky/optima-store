@@ -78,6 +78,22 @@ export default function Header() {
 
         {/* Right icons */}
         <div className="flex items-center gap-3 flex-shrink-0">
+          {user?.role === 'SELLER' ? (
+            <Link
+              href="/dashboard/seller"
+              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
+            >
+              Toko Saya
+            </Link>
+          ) : (
+            <Link
+              href="/seller-onboarding"
+              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold text-xs px-3 py-2 rounded-xl transition whitespace-nowrap"
+            >
+              Jadi Seller
+            </Link>
+          )}
+
           {/* Cart */}
           <Link href="/cart" className="relative flex flex-col items-center text-white hover:text-yellow-300 transition">
             <span className="text-xl">🛒</span>
@@ -132,6 +148,12 @@ export default function Header() {
                       className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
                       <span>👤</span> Profil
                     </Link>
+                    {user.role === 'BUYER' && (
+                      <Link href="/seller-onboarding" onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-blue-700 hover:bg-blue-50 transition">
+                        <span>🏪</span> Jadi Seller
+                      </Link>
+                    )}
                     {user.role === 'SELLER' && (
                       <Link href="/dashboard/seller" onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-green-700 hover:bg-green-50 transition">
